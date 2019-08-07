@@ -24,7 +24,7 @@ Once your application is functioning correctly, try to refactor your code as muc
 ## Current Screenshot for Reference
 <br>
 
-![alt text](https://raw.githubusercontent.com/rerun1/triangleTracker/master/img/screenShot8-6-19.png)
+![alt text](https://raw.githubusercontent.com/rerun1/triangleTracker/master/img/screenShot8-7-19.png)
 <br>
 <br>
 

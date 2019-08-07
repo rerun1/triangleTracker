@@ -17,6 +17,32 @@ var inequality = function(number1, number2, number3) {
   }
 };
 
+var equilateral = function(number1, number2, number3) {
+  if (number1 === number2 && number2 === number3) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+var isoceles = function(number1, number2, number3) {
+  if (number1 === number2 || number1 === number3 || number2 === number3) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+var scalene = function(number1, number2, number3) {
+  if (number1 != number2 && number2 != number3) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
 
 $(document).ready(function(){
   $("form#lengths").submit(function(event){
@@ -28,24 +54,25 @@ $(document).ready(function(){
 
 
     var inequalityTest = inequality(userSide1, userSide2, userSide3);
+    var equilateralTest = equilateral(userSide1, userSide2, userSide3);
+    var isocelesTest = isoceles(userSide1, userSide2, userSide3);
+    var scaleneTest = scalene(userSide1, userSide2, userSide3);
 
     if  (inequalityTest) {
       $("p#answer").empty().text("This is not a triangle!");
-      $("img#triangleType").remove("src alt");
-      $("img#triangleType").attr({"src": "img/inequality.png", "alt": "This is not a triangle"});
-    } else if (userSide1 === userSide2 && userSide2 === userSide3){
+      $("img#triangleType").remove("src alt").attr({"src": "img/inequality.png", "alt": "This is not a triangle"});
+    } else if (equilateralTest){
       $("p#answer").empty().text("Your triangle is equilateral");
-      $("img#triangleType").remove("src alt");
-      $("img#triangleType").attr({"src": "img/equilateral.png", "alt": "Your triangle is an equilateral triangle"});
-    } else if (userSide1 === userSide2 || userSide1 === userSide3 || userSide2 === userSide3) {
+      $("img#triangleType").remove("src alt").attr({"src": "img/equilateral.png", "alt": "Your triangle is an equilateral triangle"});
+    } else if (isocelesTest) {
       $("p#answer").empty().text("Your triangle is isoceles");
-      $("img#triangleType").remove("src alt");
-      $("img#triangleType").attr({"src": "img/isoceles.png", "alt": "Your triangle is an isoceles triangle"});
-    } else if (userSide1 != userSide2 && userSide2 != userSide3) {
+      $("img#triangleType").remove("src alt").attr({"src": "img/isoceles.png", "alt": "Your triangle is an isoceles triangle"});
+    } else if (scaleneTest) {
       $("p#answer").empty().text("Your triangle is scalene");
-      $("img#triangleType").remove("src alt");
-      $("img#triangleType").attr({"src": "img/scalene.png", "alt": "Your triangle is a scalene"});
+      $("img#triangleType").remove("src alt").attr({"src": "img/scalene.png", "alt": "Your triangle is a scalene"});
     } else {
+      $("p#answer").empty().text("Oops! Triangle Typer must be broken. Did you enter a whole positive number in each field?");
+      $("img#triangleType").remove("src alt").attr({"src": "img/notTriangle.png", "alt": "Type in triangle that looks like a mountain"});
     }
 
 
