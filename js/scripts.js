@@ -4,6 +4,20 @@
 // NOT a triangle: The sum of the lengths of any two sides of a triangle is less than or equal to the length of the third side.
 //
 
+
+var inequality = function(number1, number2, number3) {
+  var add1 = number1 + number2;
+  var add2 = number1 + number3;
+  var add3 = number2 + number3;
+
+  if (add1 <= number3 || add2 <= number2 || add3 <= number1) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+
 $(document).ready(function(){
   $("form#lengths").submit(function(event){
     event.preventDefault();
@@ -12,10 +26,28 @@ $(document).ready(function(){
     var userSide2 = parseInt($("input#side2").val());
     var userSide3 = parseInt($("input#side3").val());
 
-    alert(userSide1);
-    alert(userSide2);
-    alert(userSide3);
 
-    
+    var inequalityTest = inequality(userSide1, userSide2, userSide3);
+
+    if  (inequalityTest) {
+      $("p#answer").empty().text("This is not a triangle!");
+      $("img#triangleType").remove("src alt");
+      $("img#triangleType").attr({"src": "img/inequality.png", "alt": "This is not a triangle"});
+    } else if (userSide1 === userSide2 && userSide2 === userSide3){
+      $("p#answer").empty().text("Your triangle is equilateral");
+      $("img#triangleType").remove("src alt");
+      $("img#triangleType").attr({"src": "img/equilateral.png", "alt": "Your triangle is an equilateral triangle"});
+    } else if (userSide1 === userSide2 || userSide1 === userSide3 || userSide2 === userSide3) {
+      $("p#answer").empty().text("Your triangle is isoceles");
+      $("img#triangleType").remove("src alt");
+      $("img#triangleType").attr({"src": "img/isoceles.png", "alt": "Your triangle is an isoceles triangle"});
+    } else if (userSide1 != userSide2 && userSide2 != userSide3) {
+      $("p#answer").empty().text("Your triangle is scalene");
+      $("img#triangleType").remove("src alt");
+      $("img#triangleType").attr({"src": "img/scalene.png", "alt": "Your triangle is a scalene"});
+    } else {
+    }
+
+
   });
 });
